@@ -6,11 +6,11 @@ An opinionated, ColdFusion application framework.  This [will be] a working appl
 
 The Basics
 ----------
-The AngularJS client is tied to a ColdFusion server through cfwebsocket.
+- The AngularJS client is tied to a ColdFusion server through cfwebsocket.
 - cfwebsocket handles Flash fallback for deficient browsers :)
-Using Angular's event-system data to/from the server is handled.
-Using CFCs web-socket events are handled by the server.
-Pluggable architecture to add/subtract features easily.
+- Using Angular's event-system data to/from the server is handled.
+- Using CFCs web-socket events are handled by the server.
+- Pluggable architecture to add/subtract features easily.
 
 
 Why?
@@ -30,12 +30,12 @@ TBA
 	- 'path' is the CFC name plus sub-directories
 	
 These directories have special significance:
-	!appController! - these CFCs are instantiated under application.controller
-	!appService! - these CFCs are isntantiated under application.service
-	!appSession! - these CFCs are persisted and are invoked per session (see below)
-	!appRequest! - these CFCs are persisted and are invoked per request (see below)
-	!session! - these CFCs are instantiated in the session-scope (see below)
-	!request! - these CFCs are instantiated in the request-scope (see below)
+	- !appController! - these CFCs are instantiated under application.controller
+	- !appService! - these CFCs are isntantiated under application.service
+	- !appSession! - these CFCs are persisted and are invoked per session (see below)
+	- !appRequest! - these CFCs are persisted and are invoked per request (see below)
+	- !session! - these CFCs are instantiated in the session-scope (see below)
+	- !request! - these CFCs are instantiated in the request-scope (see below)
 
 
 Example Application Structure
@@ -65,15 +65,15 @@ Patterns
 --------
 AngularJS
 	3-tier URLs
-	* domain.net/root/branch/leaf
-	* this functionality is built-in
-	* can check $scope.root, $scope.branch, and $scope.leaf to determine UI state
+	- domain.net/root/branch/leaf
+	- this functionality is built-in
+	- can check $scope.root, $scope.branch, and $scope.leaf to determine UI state
 	Events
-	* Angular's event system is tied to web-sockets via the 'socket' service
-	* The 'socket' service automatically applies changes to the current scope
+	- Angular's event system is tied to web-sockets via the 'socket' service
+	- The 'socket' service automatically applies changes to the current scope
 ColdFusion
 	Events
-	* web-socket listeners...
+	- web-socket listeners...
 	Session Plugins
 	- TBD
 	- CFCs can be automatically run before/after sessions
