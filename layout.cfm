@@ -23,7 +23,10 @@
 			<script language="javascript" src="js/controllers.js" type="text/javascript">
 		</head>
 
+		<body>
+<!---
 		<body class="ui-widget-content">
+--->
 <cfelseif thisTag.ExecutionMode is "end">
 		</body>
 	</html>

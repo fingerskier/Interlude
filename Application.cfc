@@ -70,7 +70,6 @@
 		</cfswitch>
 
 		<cfset application.com = structNew()>
-		<cfset application.com.appRequest = wireCFCs("#application.path#com/appRequest")>
 		<cfset application.com.appSession = wireCFCs("#application.path#com/appSession")>
 		<cfset application.com.controllers = wireCFCs("#application.path#com/controllers")>
 		<cfset application.com.services = wireCFCs("#application.path#com/services")>
@@ -87,37 +86,18 @@
 	</cffunction>
 
 	<cffunction name="onRequestStart">
-		<cfset var CFC = "">
-
-		<cfset request = wireCFCs("#application.path#com/request")>
-
-		<cfloop collection="#application.com.appRequest#" item="CFC">
-			<cfif isDefined("CFC.before") and isCustomfunction(CFC.before)>
-				<cfinvoke component="#CFC#" method="before" requestScope="#request#">
-			</cfif>
-		</cfloop>
-		<!--- TODO: Ignored URLs (installation) --->
-		<!--- TODO: Admin stuff (application restart, app settings) --->
 		<cfif isDefined("URL.restart") and (URL.restart is "goober")>
-			<cfset applicationstop()>
+			<cfset restartApplication()>
 		</cfif>
 	</cffunction>
 
-	<cffunction name="onRequestEnd">
-		<cfdump var="#session#">
-		<cfdump var="#request#">
-
-		<cfloop collection="#application.com.appRequest#" item="CFC">
-			<cfif isDefined("CFC.after") and isCustomfunction(CFC.after)>
-				<cfinvoke component="#CFC#" method="after" requestScope="#request#">
-			</cfif>
-		</cfloop>
-	</cffunction>
+	<cffunction name="onRequestEnd"></cffunction>
 
 	<cffunction name="onSessionStart">
 		<cfset var CFC = "">
 
-		<cfset session = wireCFCs("#application.path#com/session")>
+		<cfset session.com = {}>
+		<cfset session.com = wireCFCs("#application.path#com/session")>
 
 		<cfloop collection="#application.com.appSession#" item="CFC">
 			<cfif isDefined("CFC.before") and isCustomfunction(CFC.before)>
@@ -137,6 +117,10 @@
 				<cfinvoke component="#CFC#" method="after" sessionScope="#sessionScope#">
 			</cfif>
 		</cfloop>
+	</cffunction>
 
+	<cffunction name="restartApplication">
+		<cfexecute arguments="views/index.jade -O index.cfm" name="jade" outputfile="#application.path#index.cfm">
+		<cfset applicationstop()>
 	</cffunction>
 </cfcomponent>

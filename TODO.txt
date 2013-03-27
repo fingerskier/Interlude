@@ -1,5 +1,0 @@
-TODO
-	- wire-up CFCs
-	- add plugin CFC frame
-	- test web-sockets
-	- write Angular web-socket service

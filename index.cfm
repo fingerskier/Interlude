@@ -1,3 +1,7 @@
 <cf_layout>
-	<h1 class="ui-widget-header">Interlude</h1>
+	<cf_header>
+
+	<cfinclude template="partial/account.cfm">
+
+	<cf_footer>
 </cf_layout>

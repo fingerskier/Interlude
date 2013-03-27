@@ -27,10 +27,20 @@ These directories have special significance:
 
 	- appController! - these CFCs are instantiated under application.controller
 	- appService! - these CFCs are isntantiated under application.service
-	- appSession! - these CFCs are persisted and are invoked per session (see below)
-	- appRequest! - these CFCs are persisted and are invoked per request (see below)
-	- session! - these CFCs are instantiated in the session-scope (see below)
-	- request! - these CFCs are instantiated in the request-scope (see below)
+	- appSession! 
+		- these CFCs are persisted and are invoked per session
+		- before() methods are invoked on session start
+		- after() methods are invoked on session end
+	- appRequest!
+		- these CFCs are persisted and are invoked per request
+		- before() methods are invoked on session start
+		- after() methods are invoked on session end
+	- session!
+		- these CFCs are instantiated in the session.com
+		- this is meant to provide common utilities available throughout the user's session
+	- request!
+		- these CFCs are instantiated in the request-scope
+		- this provide utilities availabe in every request
 
 
 Example Application Structure
@@ -70,19 +80,20 @@ AngularJS
 
 ColdFusion
 
-	- Events
-		- web-socket listeners...
-	- Session Plugins
-		- TBD
-		- CFCs can be automatically run before/after sessions
-		- or CFCs can be instantiated into the session-scope
-	- Request Plugins
-		- TBD
-		- Still exploring the merits of this with web-sockets...
+	- Single-Page Apps
+		- each major feature of your application is represented as a .cfm in the root directory
+		- wrap a page in <cf_layout> to include the framework functionality
+	- Messaging
+		- add a web-socket channel in Application.cfc
+		- copy the example.cfc to create a web-socket listener (in the channel directory) 
+	- Plugins
+		- As described above: CFCs in specific directories are auto-wired
+		- These will be invoked at certain times, or be available in a certain scope throughout the application
 	
 
 TODO
 ====
-- Finish scope auto-wiring - Session & Request CFC auto-wiring isn't working; probably gonna dump the request version as it's usefulness with SPA/web-sockets is questionable.
-- Test web-socket functionality - I'd like to mesh the Angular + CF web-socket events w/ some kind of shared scope
-- Mock-up sample functionality - I want a nicely featured chat-room and news.  This is problematic because, as a seed project, this stuff must be widely useable but easy to extract in future projects.
+- Test web-socket functionality
+	- I'd like to mesh the Angular + CF web-socket events w/ some kind of shared scope
+- Mock-up sample functionality
+	- I want a nicely featured chat-room and news.  This is problematic because, as a seed project, this stuff must be commonly useable but easy to extract in future projects.
