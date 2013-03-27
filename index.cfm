@@ -1,1 +1,3 @@
-<!DOCTYPE html><html><head></head><body><h1>Interlude</h1></body></html>
+<cf_layout>
+	<h1 class="ui-widget-header">Interlude</h1>
+</cf_layout>

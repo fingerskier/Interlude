@@ -30,12 +30,12 @@ TBA
 	- 'path' is the CFC name plus sub-directories
 	
 These directories have special significance:
-	- !appController! - these CFCs are instantiated under application.controller
-	- !appService! - these CFCs are isntantiated under application.service
-	- !appSession! - these CFCs are persisted and are invoked per session (see below)
-	- !appRequest! - these CFCs are persisted and are invoked per request (see below)
-	- !session! - these CFCs are instantiated in the session-scope (see below)
-	- !request! - these CFCs are instantiated in the request-scope (see below)
+	- appController! - these CFCs are instantiated under application.controller
+	- appService! - these CFCs are isntantiated under application.service
+	- appSession! - these CFCs are persisted and are invoked per session (see below)
+	- appRequest! - these CFCs are persisted and are invoked per request (see below)
+	- session! - these CFCs are instantiated in the session-scope (see below)
+	- request! - these CFCs are instantiated in the request-scope (see below)
 
 
 Example Application Structure

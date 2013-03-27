@@ -1,7 +1,4 @@
 TODO
-	- add libs
-	- add custom-tag path
-	- layout custom-tag for each feature/view
 	- wire-up CFCs
 	- add plugin CFC frame
 	- test web-sockets
