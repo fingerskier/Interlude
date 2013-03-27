@@ -72,12 +72,19 @@ AngularJS
 	- Angular's event system is tied to web-sockets via the 'socket' service
 	- The 'socket' service automatically applies changes to the current scope
 ColdFusion
-	Events
-	- web-socket listeners...
-	Session Plugins
-	- TBD
-	- CFCs can be automatically run before/after sessions
-	- or CFCs can be instantiated into the session-scope
-	Request Plugins
-	- TBD
-	- Still exploring the merits of this with web-sockets...
+	- Events
+	-- web-socket listeners...
+	- Session Plugins
+	-- TBD
+	-- CFCs can be automatically run before/after sessions
+	-- or CFCs can be instantiated into the session-scope
+	- Request Plugins
+	-- TBD
+	-- Still exploring the merits of this with web-sockets...
+	
+
+TODO
+====
+Finish scope auto-wiring - Session & Request CFC auto-wiring isn't working; probably gonna dump the request version as it's usefulness with SPA/web-sockets is questionable.
+Test web-socket functionality - I'd like to mesh the Angular + CF web-socket events w/ some kind of shared scope
+Mock-up sample functionality - I want a nicely featured chat-room and news.  This is problematic because, as a seed project, this stuff must be widely useable but easy to extract in future projects.
