@@ -59,7 +59,6 @@ request
 Patterns
 --------
 AngularJS
-
 	- 3-tier URLs
 		- domain.net/root/branch/leaf
 		- this functionality is built-in
@@ -69,7 +68,6 @@ AngularJS
 		- The 'socket' service automatically applies changes to the current scope
 
 ColdFusion
-
 	- Events
 		- web-socket listeners...
 	- Session Plugins
