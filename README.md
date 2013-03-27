@@ -69,7 +69,6 @@ request
 Patterns
 --------
 AngularJS
-
 	- 3-tier URLs
 		- domain.net/root/branch/leaf
 		- this functionality is built-in
@@ -79,6 +78,7 @@ AngularJS
 		- The 'socket' service automatically applies changes to the current scope
 
 ColdFusion
+<<<<<<< HEAD
 
 	- Single-Page Apps
 		- each major feature of your application is represented as a .cfm in the root directory
@@ -89,6 +89,17 @@ ColdFusion
 	- Plugins
 		- As described above: CFCs in specific directories are auto-wired
 		- These will be invoked at certain times, or be available in a certain scope throughout the application
+=======
+	- Events
+		- web-socket listeners...
+	- Session Plugins
+		- TBD
+		- CFCs can be automatically run before/after sessions
+		- or CFCs can be instantiated into the session-scope
+	- Request Plugins
+		- TBD
+		- Still exploring the merits of this with web-sockets...
+>>>>>>> a0000184ba973512a8aef676c296c692ab3f900a
 	
 
 TODO
