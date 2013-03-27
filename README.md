@@ -61,23 +61,24 @@ Patterns
 AngularJS
 
 	- 3-tier URLs
-	* domain.net/root/branch/leaf
-	* this functionality is built-in
-	* can check $scope.root, $scope.branch, and $scope.leaf to determine UI state
+		- domain.net/root/branch/leaf
+		- this functionality is built-in
+		- can check $scope.root, $scope.branch, and $scope.leaf to determine UI state
 	- Events
-	* Angular's event system is tied to web-sockets via the 'socket' service
-	* The 'socket' service automatically applies changes to the current scope
+		- Angular's event system is tied to web-sockets via the 'socket' service
+		- The 'socket' service automatically applies changes to the current scope
+
 ColdFusion
 
 	- Events
-	* web-socket listeners...
+		- web-socket listeners...
 	- Session Plugins
-	* TBD
-	* CFCs can be automatically run before/after sessions
-	* or CFCs can be instantiated into the session-scope
+		- TBD
+		- CFCs can be automatically run before/after sessions
+		- or CFCs can be instantiated into the session-scope
 	- Request Plugins
-	* TBD
-	* Still exploring the merits of this with web-sockets...
+		- TBD
+		- Still exploring the merits of this with web-sockets...
 	
 
 TODO
