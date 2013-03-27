@@ -21,9 +21,7 @@ The only thing simpler than CF development is not having to start it from scratc
 
 API
 ---
-```
 TBA
-```
 
 These directories have special significance:
 
@@ -61,6 +59,7 @@ request
 Patterns
 --------
 AngularJS
+
 	- 3-tier URLs
 	* domain.net/root/branch/leaf
 	* this functionality is built-in
@@ -69,6 +68,7 @@ AngularJS
 	* Angular's event system is tied to web-sockets via the 'socket' service
 	* The 'socket' service automatically applies changes to the current scope
 ColdFusion
+
 	- Events
 	* web-socket listeners...
 	- Session Plugins
