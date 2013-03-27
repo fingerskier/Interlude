@@ -6,6 +6,7 @@ An opinionated, ColdFusion application framework.  This [will be] a working appl
 
 The Basics
 ----------
+
 - The AngularJS client is tied to a ColdFusion server through cfwebsocket.
 - cfwebsocket handles Flash fallback for deficient browsers :)
 - Using Angular's event-system data to/from the server is handled.
@@ -25,6 +26,7 @@ TBA
 ```
 
 'com.path'
+
 	For CFCs that are automatically instantiated:
 	- 'com' is one of the conventional directories
 	- 'path' is the CFC name plus sub-directories
@@ -64,6 +66,7 @@ request
 Patterns
 --------
 AngularJS
+
 	3-tier URLs
 	- domain.net/root/branch/leaf
 	- this functionality is built-in
@@ -72,6 +75,7 @@ AngularJS
 	- Angular's event system is tied to web-sockets via the 'socket' service
 	- The 'socket' service automatically applies changes to the current scope
 ColdFusion
+
 	- Events
 	-- web-socket listeners...
 	- Session Plugins
@@ -85,6 +89,7 @@ ColdFusion
 
 TODO
 ====
-Finish scope auto-wiring - Session & Request CFC auto-wiring isn't working; probably gonna dump the request version as it's usefulness with SPA/web-sockets is questionable.
-Test web-socket functionality - I'd like to mesh the Angular + CF web-socket events w/ some kind of shared scope
-Mock-up sample functionality - I want a nicely featured chat-room and news.  This is problematic because, as a seed project, this stuff must be widely useable but easy to extract in future projects.
+
+- Finish scope auto-wiring - Session & Request CFC auto-wiring isn't working; probably gonna dump the request version as it's usefulness with SPA/web-sockets is questionable.
+- Test web-socket functionality - I'd like to mesh the Angular + CF web-socket events w/ some kind of shared scope
+- Mock-up sample functionality - I want a nicely featured chat-room and news.  This is problematic because, as a seed project, this stuff must be widely useable but easy to extract in future projects.
