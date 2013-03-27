@@ -25,13 +25,8 @@ API
 TBA
 ```
 
-'com.path'
-
-	For CFCs that are automatically instantiated:
-	- 'com' is one of the conventional directories
-	- 'path' is the CFC name plus sub-directories
-	
 These directories have special significance:
+
 	- appController! - these CFCs are instantiated under application.controller
 	- appService! - these CFCs are isntantiated under application.service
 	- appSession! - these CFCs are persisted and are invoked per session (see below)
