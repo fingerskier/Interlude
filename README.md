@@ -63,6 +63,9 @@ ColdFusion
 TODO
 ====
 - Test web-socket functionality
+	- Need to validate the web-socket transfers
+	- Events are one-way, event-handlers should emit and event to send data back
+	- Need to add in methodology for broadcasting vs. pushing to one user vs. pushing to group of users (?roles?) 
 	- I'd like to mesh the Angular + CF web-socket events w/ some kind of shared scope
 - Mock-up sample functionality
 	- I want a nicely featured chat-room and news.  This is problematic because, as a seed project, this stuff must be commonly useable but easy to extract in future projects.
