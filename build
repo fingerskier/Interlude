@@ -1,0 +1,1 @@
+jade partials/index.jade -O index.cfm

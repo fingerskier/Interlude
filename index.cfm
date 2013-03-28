@@ -1,7 +1,7 @@
 <cf_layout>
 	<cf_header>
 
-	<cfinclude template="partial/account.cfm">
+	<cfdump var="#application#">
 
 	<cf_footer>
 </cf_layout>
