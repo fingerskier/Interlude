@@ -3,10 +3,10 @@
 
 
 /* TEAM */
-  Dev: fingerskier
-  Site: auto-drill.net
+  Dev: 
+  Site: 
   Twitter: 
-  Location: USA
+  Location: 
 
 /* THANKS */
   Names (& URL): 
