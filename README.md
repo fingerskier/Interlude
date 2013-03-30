@@ -1,4 +1,4 @@
-*** Interlude
+***Interlude
 A ColdFusion + AngularJS seed project
 
 Whatcha Need
