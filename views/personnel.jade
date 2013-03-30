@@ -1,0 +1,27 @@
+div(ng-controller="PersonnelCtrl")
+  table
+    tr
+      td Name
+      td ID
+      td Role
+    tr(ng-repeat="person in personnel")
+      td
+        input(ng-model="person.name")
+      td
+        input(ng-model="person.ID")
+      td
+        input(ng-model="person.role|adrole")
+    tr
+      td
+        input(ng-model="newPerson.name")
+      td
+        input(ng-model="newPerson.ID")
+      td
+        select(ng-model="newPerson.role")
+          option(value="0")LDD
+          option(value="1")DD2
+          option(value="3")DDT
+          option(value="4")MWD
+          option(value="5")MWD2
+          option(value="6")MWDT
+          option(value="7")Other

@@ -11,36 +11,9 @@
 		<cfreturn "unknown">
 	</cffunction>
 
-	<cffunction name="wireCFCs">
-		<cfargument name="path" required="true" type="string">
-
-		<cfset var comDirs = "">
-		<cfset var result = structNew()>
-		<cfset var subPath = "">
-		<cfset var thisName = "">
-		<cfset subPath = replacenocase(arguments.path, application.path, '')>
-		<cfset subPath = replace(subPath, '/', '.', 'all')>
-		<cfset subPath = replacenocase(subPath, '.cfc', '')>
-
-		<cfif arguments.path contains '.cfc'>
-			<cfobject component="#subPath#" name="result" type="component">
-		<cfelse>
-			<cfdirectory action="list" directory="#arguments.path#" name="comDirs" recurse="false">
-			<cfloop query="#comDirs#">
-				<cfset thisName = name>
-				<cfif right(name, 4) is '.cfc'>
-					<cfset thisName = left(name, len(name)-4)>
-				</cfif>
-				<cfset result[thisName] = wireCFCs(directory & "/" & name)>
-			</cfloop>
-		</cfif>
-
-		<cfreturn result>
-	</cffunction>
-
 	<cffunction name="emit">
 		<cfargument name="event" required="true" type="string">
-		<cfargument name="data" required="false" default="">
+		<cfargument default="" name="data" required="false">
 
 		<cfset var CFC = "">
 		<cfset var eventArray = application.interlude.event[arguments.event]>
@@ -53,15 +26,21 @@
 			<cfset CFC = listDeleteAt(thisn, listLen(thisn, "."), ".")>
 			<cfset CFC = application.interlude.listener[CFC]>
 			<cfinvoke component="#CFC#" method="#method#" data="#arguments.data#" result="result">
-			<cfif isDefined("result")>
-				<cfset publish("data", serializeJSON(result))>
-			</cfif>
 		</cfloop>
+	</cffunction>
+
+	<cffunction name="getSubscriber" returntype="struct">
+		<cfargument name="clientID" required="true">
+
+		<cfset var result = wsGetSubscribers(arguments.clientID)>
+		<cfset result = result[clientID]>
+
+		<cfreturn result>
 	</cffunction>
 
 	<cffunction name="on">
 		<cfargument name="event" required="true" type="string">
-		<cfargument name="handler" required="true">
+		<cfargument name="handler" required="true" type="string">
 
 		<cfparam name="application.interlude.event['#arguments.event#']" default="#arrayNew(1)#">
 
@@ -124,5 +103,32 @@
 
 	<cffunction name="restartApplication">
 		<cfset applicationstop()>
+	</cffunction>
+
+	<cffunction name="wireCFCs">
+		<cfargument name="path" required="true" type="string">
+
+		<cfset var comDirs = "">
+		<cfset var result = structNew()>
+		<cfset var subPath = "">
+		<cfset var thisName = "">
+		<cfset subPath = replacenocase(arguments.path, application.path, '')>
+		<cfset subPath = replace(subPath, '/', '.', 'all')>
+		<cfset subPath = replacenocase(subPath, '.cfc', '')>
+
+		<cfif arguments.path contains '.cfc'>
+			<cfobject component="#subPath#" name="result" type="component">
+		<cfelse>
+			<cfdirectory action="list" directory="#arguments.path#" name="comDirs" recurse="false">
+			<cfloop query="#comDirs#">
+				<cfset thisName = name>
+				<cfif right(name, 4) is '.cfc'>
+					<cfset thisName = left(name, len(name)-4)>
+				</cfif>
+				<cfset result[thisName] = wireCFCs(directory & "/" & name)>
+			</cfloop>
+		</cfif>
+
+		<cfreturn result>
 	</cffunction>
 </cfcomponent>

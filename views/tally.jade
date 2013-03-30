@@ -1,0 +1,41 @@
+div(ng-controller="TallyCtrl")
+  ul TODO
+    li a way to insert items in between others in the tally
+  input(ng-click="saveTally", type="button", value="save")
+  br
+  form
+    table
+      thead
+        tr
+          th in BHA
+          th item
+          th joint length
+          th overall length
+          th bit depth
+          th MWD depth
+          th remove
+      tbody
+        tr(ng-repeat="tubular in drillString.tubulars")
+          td
+            input(ng-model="tubular.BHAmember", type="checkbox")
+          td
+            select(ng-model="tubular.item")
+              option(ng-repeat="item in inventory", ng-selected="tubular.item==$index", value="{{$index}}"){{item.description||item.type}}
+          td
+            {{inventory[tubular.item].len}}
+          td {{tubular.sum}}
+          td {{stickUpDepth(tubular)}}
+          td {{MWDdepth(tubular)}}
+          td
+            button.btn.btn-danger(ng-click="deleteTubular($index)")
+              i.icon-fire
+        tr.control-group-success
+          td
+            input(ng-model="newTubular.BHAmember", placeholder="in BHA?", type="checkbox")
+          td
+            select(ng-model="newTubular.item")
+              option(ng-repeat="item in inventory", value="{{$index}}"){{item.type}}; {{item.description}}
+          td
+            {{inventory[newTubular.item].len}}
+          td(colspan="4")
+            input(ng-click="addTubular()", type="button", value="add")add

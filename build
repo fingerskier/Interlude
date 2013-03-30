@@ -1,1 +1,2 @@
-jade partials/index.jade -O index.cfm
+jade views/index.jade -w -O ./ &
+stylus -w ./styles/main.styl -c -o ./ &

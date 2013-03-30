@@ -1,0 +1,23 @@
+div(ng-controller="ActivityController")
+  button.btn.btn-success(ng-click="save()")
+    i.icon-share
+  div{{date}}
+  div{{day}}
+  table
+    tr(ng-repeat="activity in todaysActivities")
+      td.data
+        input(ng-model="activity.startTime", value="{{activity.startTime|date:HH:mm}}")
+      td.data
+        input(ng-model="activity.endTime", value="{{activity.endTime|date:HH:mm}}")
+      td.data
+        input(ng-model="activity.mode", value="{{activity.mode|date:HH:mm}}")
+      td |op
+    tr
+      td.data
+        input(ng-model="newActivity.startTime")
+      td.data
+        input(ng-model="newActivity.endTime")
+      td.data
+        input(ng-model="newActivity.mode")
+      td
+        button.btn.btn-info(ng-click="addActivity()")

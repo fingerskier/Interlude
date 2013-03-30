@@ -1,0 +1,3 @@
+/usr/bin/google-chrome http://localhost:8500/auto-drill.net/
+/usr/bin/google-chrome http://localhost:8500/auto-drill.net/SpecRunner.html
+/usr/bin/google-chrome http://localhost:8500/auto-drill.net/mxunit/

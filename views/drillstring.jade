@@ -1,0 +1,19 @@
+div(ng-controller="StringCtrl", ng-show="isJobSelected()")
+  form.btn-group
+    label.btn.nav.nav-tabs(ng-class="modeButtonClass('tally')")
+      input(accesskey="{{accessKey(0)}}", name="drillstringMode", ng-model="mode", type="radio", value="tally")
+      | Pipe Tally
+    label.btn.btn-info.nav.nav-tabs(ng-class="modeButtonClass('inventory')")
+      input(accesskey="{{accessKey(1)}}", name="drillstringMode", ng-model="mode", type="radio", value="inventory")
+      | Inventory
+  div(ng-switch="mode")
+    div(ng-switch-when="tally")
+      form.btn-group
+        label.btn.btn-success(ng-repeat="item in drillStrings", ng-class="stringButtonClass($index)", accesskey="{{accessKey2($index)}}")
+          |{{$index+1}}
+          input(name="stringNavigator", ng-click="goto($index+1)", type="radio")
+        a.btn(ng-class="stringButtonClass('new')", ng-click="navigate('/drillstring/new')", type="button") add a string
+      div(ng-show="branchURL().length")
+        include tally
+    div(ng-switch-when="inventory")
+      include inventory

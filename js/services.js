@@ -1,6 +1,5 @@
 angular.module('app.services', [])
 .factory('socket', function ($log, $rootScope) {
-  // var socket = io.connect('http://localhost:3000');
   return {
     on: function (eventName, callback) {
       $log.info(eventName, callback);

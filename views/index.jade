@@ -1,0 +1,49 @@
+extends layout
+
+block body
+  div(ng-controller='AppCtrl')
+    div(ng-mouseleave="titler=0", ng-mouseover="titler=1")
+      //- h2 auto-drill.net
+      h2 fingerskier
+        a(href="/", ng-show="titler") ^
+
+    form.btn-group(ng-cloak)
+      label.btn.btn-primary.nav.nav-tabs(accesskey="1", ng-class="activeRoot('account')")
+        input(name="navigator", ng-click="navigate('account')", type="radio")
+        |account
+      label.btn.btn-primary.nav.nav-tabs(accesskey="2", ng-class="activeRoot('calc')")
+        input(name="navigator", ng-click="navigate('calc')", type="radio")
+        |calc
+      label.btn.btn-primary.nav.nav-tabs(accesskey="3", ng-class="activeRoot('job')")
+        input(name="navigator", ng-click="navigate('job')", type="radio")
+        |job
+      label.btn.btn-primary.nav.nav-tabs(accesskey="4", ng-class="activeRoot('dd')", ng-show="isJobSelected()")
+        input(name="navigator", ng-click="navigate('dd')", type="radio")
+        |directional
+      label.btn.btn-primary.nav.nav-tabs(accesskey="5", ng-class="activeRoot('drillstring')", ng-show="isJobSelected()")
+        input(name="navigator", ng-click="navigate('drillstring')", type="radio")
+        |drill-string
+      label.btn.btn-primary.nav.nav-tabs(accesskey="6", ng-class="activeRoot('log')", ng-show="isJobSelected()")
+        input(name="navigator", ng-click="navigate('log')", type="radio")
+        |logs
+      label.btn.btn-primary.nav.nav-tabs(accesskey="7", ng-class="activeRoot('report')", ng-show="isJobSelected()")
+        input(name="navigator", ng-click="navigate('report')", type="radio")
+        |reports
+
+    ul(ng-cloak, ng-switch='root')
+      li(ng-switch-when='account')
+        include account
+      li(ng-switch-when='job')
+        include job
+      li(ng-switch-when='calc')
+        include calc
+      li(ng-show="isJobSelected()", ng-switch-when='dd')
+        include dd
+      li(ng-show="isJobSelected()", ng-switch-when='drillstring')
+        include drillstring
+      li(ng-show="isJobSelected()", ng-switch-when='log')
+        include log
+      li(ng-show="isJobSelected()", ng-switch-when='report')
+        include report
+
+    pre#bottomPanel auto-drill v0.2

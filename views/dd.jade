@@ -1,0 +1,145 @@
+div(ng-controller="DDctrl")
+  form
+    select(accesskey="q", ng-change="goto(curveID)", ng-model="curveID")
+      option(ng-repeat="c in curves", ng-selected="branch==$index", value="{{$index}}"){{$index}}:{{c.name}}
+      option(ng-selected="branch==-1", value="-1")New Curve
+  div(ng-show="branch.length")
+    button(ng-click="saveCurve()") save
+    button(ng-click="deleteCurve(branch)") delete
+    form
+      label
+        |Curve Name
+        input(ng-model="curve.name", value="{{curve.name}}")
+      label
+        |MWD offset
+        input(ng-model="curve.MWDoffset", value="{{curve.MWDoffset}}")
+      table#surveyTable
+        thead
+          tr
+            th
+            th MD
+            th Inc
+            th Azm
+            th TVD
+            th N
+            th E
+            th VS
+            th Dist
+            th Dir
+            th DLS
+            th ctrl
+        tbody
+          tr
+            td tie-in
+            td
+              input(ng-model="curve.tieIn.MD", placeholder="MD", value="{{curve.tieIn.MD}}")
+            td
+              input(ng-model="curve.tieIn.inc", placeholder="inc", value="{{curve.tieIn.inc}}")
+            td
+              input(ng-model="curve.tieIn.azm", placeholder="azm", value="{{curve.tieIn.azm}}")
+            td
+              input(ng-model="curve.tieIn.TVD", placeholder="TVD", value="{{curve.tieIn.TVD}}")
+            td
+              input(ng-model="curve.tieIn.N", placeholder="N", value="{{curve.tieIn.N}}")
+            td
+              input(ng-model="curve.tieIn.E", placeholder="E", value="{{curve.tieIn.E}}")
+            td {{tieIn.VS|number:2}}
+            td(colspan="3") |
+            td ctrl
+          tr.svyRow(ng-repeat="svy in curve.surveys")
+            td svy
+            // auto-complete available for survey-depths from the pipe-tally (any depth can be entered though)
+            td
+              input(ng-model="svy.MD", value="{{svy.MD}}")
+            td
+              input(ng-model="svy.inc", value="{{svy.inc}}")
+            td
+              input(ng-model="svy.azm", value="{{svy.azm}}")
+            td
+              {{svy.TVD|number:2}}
+            td
+              {{svy.N|number:2}}
+            td
+              {{svy.E|number:2}}
+            td
+              {{svy.VS|number:2}}
+            td
+              {{svy.dist|number:2}}
+            td
+              {{svy.dir|number:2}}
+            td
+              {{svy.DLS|number:2}}
+            td
+              button.btn.btn-danger(ng-click="deleteSurvey($index)")
+                i.icon-fire
+          tr.svyRow
+            td new svy
+            td
+              input(ng-model="newSvy.MD", placeholder="MD", value="{{newSvy.MD}}")
+            td
+              input(ng-model="newSvy.inc", placeholder="Inc", value="{{newSvy.inc}}")
+            td
+              input(ng-model="newSvy.azm", placeholder="Azm", value="{{newSvy.azm}}")
+            td(colspan="6")
+              input(type="button", ng-click="addSurvey()", value="add survey")
+            td ctrl
+        //- project to each target in turn
+        tr
+          td BHL
+          td {{BHL.MD|number:2}}
+          td {{BHL.inc|number:2}}
+          td {{BHL.azm|number:2}}
+          td {{BHL.TVD|number:2}}
+          td {{BHL.N|number:2}}
+          td {{BHL.E|number:2}}
+          td {{BHL.VS|number:2}}
+          td {{BHL.dist|number:2}}
+          td {{BHL.dir|number:2}}
+          td {{BHL.DLS|number:2}}
+          td ctrl
+        tbody(ng-repeat="targ in curve.targets")
+          tr
+            td proj
+            td
+              input(ng-model="proj.MD", ng-change="calculateProjection($index, proj)")
+            td {{proj.inc|number:2}}
+            td {{proj.azm|number:2}}
+            td {{proj.TVD|number:2}}
+            td {{proj.N|number:2}}
+            td {{proj.E|number:2}}
+            td {{proj.VS|number:2}}
+            td {{proj.dist|number:2}}
+            td {{proj.dir|number:2}}
+            td {{proj.DLS|number:2}}
+            td ctrl
+          tr.targRow
+            td target {{$index}}
+            td {{targ.MD|number:2}}
+            td {{targ.inc|number:2}}
+            td {{targ.azm|number:2}}
+            td {{targ.TVD|number:2}}
+            td {{targ.N|number:2}}
+            td {{targ.E|number:2}}
+            td {{targ.VS|number:2}}
+            td {{targ.dist|number:2}}
+            td {{targ.dir|number:2}}
+            td {{targ.DLS|number:2}}
+            td ctrl
+        tbody
+          tr.targRow
+            td new target
+            td
+              input(ng-model="newTarg.MD", placeholder="MD", value="{{newTarg.MD}}")
+            td
+              input(ng-model="newTarg.inc", placeholder="inc", value="{{newTarg.inc}}")
+            td
+              input(ng-model="newTarg.azm", placeholder="azm", value="{{newTarg.azm}}")
+            td
+              input(ng-model="newTarg.TVD", placeholder="TVD", value="{{newTarg.TVD}}")
+            td
+              input(ng-model="newTarg.N", placeholder="N", value="{{newTarg.N}}")
+            td
+              input(ng-model="newTarg.E", placeholder="E", value="{{newTarg.E}}")
+            td(colspan="4")
+              input(type="button", ng-click="addTarget()", value="add target")
+            td ctrl

@@ -1,0 +1,19 @@
+div(ng-controller="LogCtrl")
+  div(ng-model="date", ui-date="datepickerOptions")
+  form.btn-group
+    label.btn.btn-success.nav.nav-tabs(ng-class="modeButtonClass('activity')")
+      input(accesskey="{{accessKey(0)}}", name="loggerMode", ng-model="mode", type="radio", value="activity")
+      | Activities
+    label.btn.btn-success.nav.nav-tabs(ng-class="modeButtonClass('personnel')")
+      input(accesskey="{{accessKey(1)}}", name="loggerMode", ng-model="mode", type="radio", value="personnel")
+      | Personnel
+    label.btn.btn-success.nav.nav-tabs(ng-class="modeButtonClass('costs')")
+      input(accesskey="{{accessKey(2)}}", name="loggerMode", ng-model="mode", type="radio", value="costs")
+      | Cost
+  div(ng-switch="mode")
+    div(ng-switch-when="activity")
+      include activity
+    div(ng-switch-when="personnel")
+      include personnel
+    div(ng-switch-when="costs")
+      include costs
