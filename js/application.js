@@ -1,4 +1,4 @@
-function ws_msg_handler() {}
+function WSmsg() {}
 
 angular.module('app', ['app.filters', 'app.services', 'app.directives', 'ui'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

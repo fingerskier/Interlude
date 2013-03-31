@@ -76,7 +76,8 @@
 		<cfset setupListeners(application.interlude.listener)>
 	</cffunction>
 
-	<cffunction name="onApplicationEnd"></cffunction>
+	<cffunction name="onApplicationEnd">
+	</cffunction>
 
 	<cffunction name="onError">
 		<cfargument name="Exception" required="true">
@@ -91,9 +92,11 @@
 		</cfif>
 	</cffunction>
 
-	<cffunction name="onRequestEnd"></cffunction>
+	<cffunction name="onRequestEnd">
+	</cffunction>
 
-	<cffunction name="onSessionStart"></cffunction>
+	<cffunction name="onSessionStart">
+	</cffunction>
 
 	<cffunction name="onSessionEnd">
 		<cfargument name="SessionScope" required="true">
