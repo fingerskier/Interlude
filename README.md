@@ -15,16 +15,10 @@ Get the basic framework setup and running...with tests.
 Test and implement client/server functionality with a basic application: news, chat, and accounts.
 
 ``` v0.5 - v0.6
-Testing in real-world scenarios.
-
-``` v0.7 - v0.8
 Perhaps minification/compression of CSS & JS for production.  Auto-wiring of CRUD functionality for ORM.
 
 
 Read http://www.adobe.com/devnet/coldfusion/articles/html5-websockets-coldfusion-pt1.html#articlecontentAdobe_numberedheader_3
-Need to account for nested apps == relative paths
-Auto-load CSS and JS files
-  concatenation & compression for production mode (UglifyJS & Stylus)
 
 
 ## Whatcha Need
