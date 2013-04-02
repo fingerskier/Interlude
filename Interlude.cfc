@@ -1,14 +1,13 @@
 <cfcomponent>
+	<cfset this.customTagPaths = expandPath('tags')>
 	<cfset this.wschannels = [{ name="interlude", CFClistener = "WS" }]>
 
-	<cffunction name="environment">
-		<cfif findNoCase(".net", CGI.SERVER_NAME)>
-			<cfreturn "production">
-		<cfelseif findNoCase("local", CGI.SERVER_NAME)>
-			<cfreturn "development">
+	<cffunction name="isInDevelopment">
+		<cfif findNoCase("local", CGI.SERVER_NAME)>
+			<cfreturn true>
 		</cfif>
 
-		<cfreturn "unknown">
+		<cfreturn false>
 	</cffunction>
 
 	<cffunction name="emit">
@@ -47,34 +46,30 @@
 		<cfset arrayAppend(application.interlude.event['#arguments.event#'], arguments.handler)>
 	</cffunction>
 
-	<cffunction name="onApplicationStart">
-		<cfset application.interlude.debugs = arrayNew(1)>
-		<cfset application.interlude.errors = arrayNew(1)>
-		<cfset application.path = getDirectoryFromPath(getBaseTemplatePath())>
-		<cfset application.path = replace(application.path, "\", "/", "all")>
+  <cffunction name="onApplicationStart">
+    <cfset application.interlude.debugs = arrayNew(1)>
+    <cfset application.interlude.errors = arrayNew(1)>
+    <cfset application.path = getDirectoryFromPath(getBaseTemplatePath())>
+    <cfset application.path = replace(application.path, "\", "/", "all")>
 
-		<cfif CGI.HTTPS is "on">
-			<cfset application.URL = "https://">
-		<cfelse>
-			<cfset application.URL = "http://">
-		</cfif>
-		<cfset application.URL &= CGI.HTTP_HOST>
-		<!--- TRIP-DE-TRIP!!! --->
-		<cfset application.URL &= "/Interlude">
-		<!--- TRIP-DE-TRIP!!! --->
+    <cfif CGI.HTTPS is "on">
+      <cfset application.URL = "https://">
+    <cfelse>
+      <cfset application.URL = "http://">
+    </cfif>
+    <cfset application.URL &= CGI.HTTP_HOST>
+    <!--- TRIP-DE-TRIP!!! --->
+    <cfset application.URL &= "/Interlude">
+    <!--- TRIP-DE-TRIP!!! --->
+    <cfset application.URL &= "/">
 
-		<cfswitch expression="#environment()#">
-			<cfcase value="development">
-			</cfcase>
-			<cfcase value="production">
-			</cfcase>
-		</cfswitch>
+    <cfset application.development = isInDevelopment()>
 
-		<cfset application.interlude.listener = structNew()>
-		<cfset application.interlude.listener = wireCFCs("#application.path#listeners")>
-		<cfset application.interlude.event = structNew()>
-		<cfset setupListeners(application.interlude.listener)>
-	</cffunction>
+    <cfset application.interlude.listener = structNew()>
+    <cfset application.interlude.listener = wireCFCs("#application.path#listeners")>
+    <cfset application.interlude.event = structNew()>
+    <cfset setupListeners(application.interlude.listener)>
+  </cffunction>
 
 	<cffunction name="onApplicationEnd">
 	</cffunction>

@@ -1,5 +1,7 @@
 angular.module('app.services', [])
 .factory('socket', function ($log, $rootScope) {
+  var socket = new WS();
+
   return {
     on: function (eventName, callback) {
       $log.info(eventName, callback);

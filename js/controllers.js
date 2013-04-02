@@ -1,35 +1,35 @@
-function AppCtrl($http, $location, $log, $route, $routeParams, $scope, $timeout) {
-  $scope.action = [];
-  $scope.msgs = [];
+function InterludeController($http, $location, $log, $route, $routeParams, $scope, $timeout) {
+  $scope.goober = "flarn";
 
-  $scope.activeAction = function(fav) {
+  $scope.rootStyle = function(fav) {
     if ($scope.root == fav) return 'active'
     else return '';
   };
 
-  $scope.activeBranch = function(fav) {
+  $scope.branchStyle = function(fav) {
     if ($scope.branch == fav) return 'active'
     else return '';
   };
 
-  $scope.activeLeaf = function(fav) {
+  $scope.leafStyle = function(fav) {
     if ($scope.leaf == fav) return 'active'
     else return '';
   };
 
+  $scope.rootURL = function(root) {
+    return interlude.URL + '/' + root + '/';
+  };
+
   $scope.branchURL = function(branch) {
-    return $scope.root + '/' + branch;
+    return interlude.URL + '/' + $scope.root + '/' + branch;
   };
 
   $scope.leafURL = function(leaf) {
-    return $scope.root + '/' + $scope.branch + '/' + leaf;
+    return interlude.URL + '/' + $scope.root + '/' + $scope.branch + '/' + leaf;
   };
 
-  $scope.rootURL = function(root) {
-    return root + '/';
-  };
-
-  $scope.$on('$routeChangeSuccess', function (scope, next, current) {
+  $scope.$on('$routeChangeSuccess', function(scope, next, current) {
+    $log.warn('route change');
     $scope.root = $routeParams.root;
     $scope.branch = $routeParams.branch;
     $scope.leaf = $routeParams.leaf;
