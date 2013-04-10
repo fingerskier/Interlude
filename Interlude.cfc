@@ -81,6 +81,10 @@
 		<cfdump var="#arguments#">
 	</cffunction>
 
+	<cffunction name="onMissingTemplate">
+		<cflocation url="#application.URL#" addtoken="false">
+	</cffunction>
+
 	<cffunction name="onRequestStart">
 		<cfif isDefined("URL.restart") and (URL.restart is "goober")>
 			<cfset restartApplication()>

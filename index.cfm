@@ -44,6 +44,8 @@
       </head>
 
       <body ng-controller="InterludeController">
+        <cfinclude template="view/header.cfm">
+
         <cfinclude template="view/main.cfm">
       </body>
     </html>

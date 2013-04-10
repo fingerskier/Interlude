@@ -1,4 +1,4 @@
-function InterludeController($http, $location, $log, $route, $routeParams, $scope, $timeout) {
+function InterludeController($log, $route, $routeParams, $scope, $timeout) {
   $scope.goober = "flarn";
 
   $scope.rootStyle = function(fav) {
@@ -14,6 +14,10 @@ function InterludeController($http, $location, $log, $route, $routeParams, $scop
   $scope.leafStyle = function(fav) {
     if ($scope.leaf == fav) return 'active'
     else return '';
+  };
+
+  $scope.rootURL = function(root) {
+    return interlude.URL;
   };
 
   $scope.rootURL = function(root) {

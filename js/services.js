@@ -1,27 +1,32 @@
 angular.module('app.services', [])
 .factory('socket', function ($log, $rootScope) {
-  var socket = new WS();
+  WSmsg = function() {
+    $log.info('WS msg: ', arguments);
+    emitEvent(arguments);
+  };
+
+  function emitEvent(eventName, data, callback) {
+    $log.info(eventName, data, callback);
+
+    var args = arguments;
+    $rootScope.$apply(function () {
+      if (callback) {
+        callback.apply(socket, args);
+      }
+    });
+  }
+
+  function onEvent(eventName, callback) {
+    $log.info(eventName, callback);
+    
+    var args = arguments;
+    $rootScope.$apply(function () {
+      callback.apply(socket, args);
+    });
+  }
 
   return {
-    on: function (eventName, callback) {
-      $log.info(eventName, callback);
-      socket.on(eventName, function () {
-        var args = arguments;
-        $rootScope.$apply(function () {
-          callback.apply(socket, args);
-        });
-      });
-    },
-    emit: function (eventName, data, callback) {
-      $log.info(eventName, data, callback);
-      socket.emit(eventName, data, function () {
-        var args = arguments;
-        $rootScope.$apply(function () {
-          if (callback) {
-            callback.apply(socket, args);
-          }
-        });
-      })
-    }
+    emitEventt: emitEvent,
+    on: onEvent
   };
 });

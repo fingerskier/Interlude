@@ -1,8 +1,8 @@
 var interlude = {
-	URL: 'Interlude'
+	URL: '/Interlude'
 }
 
-function WSmsg() {}
+var WSmsg;
 
 angular.module('app', ['app.filters', 'app.services', 'app.directives', 'ui', 'ui.bootstrap'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -12,12 +12,19 @@ angular.module('app', ['app.filters', 'app.services', 'app.directives', 'ui', 'u
 	.when(interlude.URL + '/:root')
 	.when(interlude.URL + '/:root/:branch')
 	.when(interlude.URL + '/:root/:branch/:leaf')
-//	.otherwise({redirectTo: interlude.URL + '/'});
+	.otherwise({redirectTo: interlude.URL + '/'});
 
 	$locationProvider.html5Mode(true);
 }])
-.run(function($location, $log, $rootScope) {
+.run(function($location, $log, $rootScope, socket) {
+	$rootScope.data = {};
+
 	$rootScope.navigate = function(path) {
-	$location.path(path);
+		$location.path(path);
 	};
+
+	$rootScope.$watch('data', function(newVal, oldVal) {
+		if (newVal !== oldVal)
+			socket.emit();
+	});
 });
